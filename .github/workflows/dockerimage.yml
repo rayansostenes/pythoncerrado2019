@@ -17,11 +17,11 @@ jobs:
         echo $GCLOUD_AUTH | base64 --decode > gcloud-service-key.json
         wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
         tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
+        google-cloud-sdk/bin/gcloud --quiet components install beta
         google-cloud-sdk/bin/gcloud --quiet components update
         google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gcloud-service-key.json
         docker login -u _json_key --password-stdin https://us.gcr.io < gcloud-service-key.json
         docker build . --file Dockerfile --tag gcr.io/campuspartygo2019/djangoapp
         gcloud docker -- push gcr.io/campuspartygo2019/djangoapp
-        gcloud components install beta
         gcloud beta run deploy djangoapp --region us-central1 --project campuspartygo2019 --image gcr.io/campuspartygo2019/djangoapp:latest --platform managed
         docker run -e DATABASE_URL=$DATABASE_URL gcr.io/campuspartygo2019/djangoapp python manage.py migrate
