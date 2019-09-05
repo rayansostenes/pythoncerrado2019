@@ -10,6 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
+      env:
+        GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
       run: |
         echo $GCLOUD_AUTH | base64 --decode > gcloud-service-key.json
         wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
