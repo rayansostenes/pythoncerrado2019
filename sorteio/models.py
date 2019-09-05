@@ -17,8 +17,8 @@ class Pessoa(BaseModel):
 
 class Sorteio(BaseModel):
     premio = models.CharField(max_length=1024)
-    post_instagram = models.CharField(max_length=1024)
-    perfil_instagram = models.CharField(max_length=1024)
+    post_instagram = models.CharField(max_length=1024, blank=True)
+    perfil_instagram = models.CharField(max_length=1024, blank=True)
     inscritos = models.ManyToManyField(Pessoa)
     vencedor_unico = models.BooleanField(default=False)
-    vencedor = models.ForeignKey(Pessoa, null=True, on_delete=models.PROTECT, related_name='sorteios_vencidos')
+    vencedor = models.ForeignKey(Pessoa, null=True, blank=True, on_delete=models.PROTECT, related_name='sorteios_vencidos')
