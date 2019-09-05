@@ -8,11 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/gcloud/auth@master
+    - name: Run a custom command
+      uses: monacorp/action-name@master
       with:
-        secrets: 
-          - "GCLOUD_AUTH"
+        secrets:
+        - "GCLOUD_AUTH"
+    - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag gcr.io/campusparty2019/djangoapp
