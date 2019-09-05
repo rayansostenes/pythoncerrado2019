@@ -10,6 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/gcloud/auth@master
+      with:
+        secrets: ["GCLOUD_AUTH"]
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag gcr.io/campusparty2019/djangoapp
