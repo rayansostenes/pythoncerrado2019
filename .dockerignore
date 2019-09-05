@@ -1,0 +1,3 @@
+.env
+gcloud_credentials.json
+db.sqlite3

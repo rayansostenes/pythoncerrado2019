@@ -123,16 +123,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-GS_BUCKET_NAME = 'pythoncerrado'
-GS_AUTO_CREATE_ACL = 'publicRead'
-GS_DEFAULT_ACL = 'publicRead'
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GS_BUCKET_NAME = 'pythoncerrado'
+# GS_AUTO_CREATE_ACL = 'publicRead'
+# GS_DEFAULT_ACL = 'publicRead'
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-if DEBUG:
-    from google.oauth2 import service_account
+# if DEBUG:
+#     from google.oauth2 import service_account
 
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        base_path("gcloud_credentials.json")
-    )
+#     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+#         base_path("gcloud_credentials.json")
+#     )
 
-GS_AUTO_CREATE_BUCKET = True
+# GS_AUTO_CREATE_BUCKET = True
