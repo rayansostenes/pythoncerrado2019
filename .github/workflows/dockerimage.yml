@@ -11,8 +11,7 @@ jobs:
     - name: Run a custom command
       uses: monacorp/action-name@master
       with:
-        secrets:
-        - "GCLOUD_AUTH"
+        secrets: "GCLOUD_AUTH"
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
