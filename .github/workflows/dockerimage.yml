@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run a custom command
-      uses: monacorp/action-name@master
+      uses: actions/gcloud/auth@master
       with:
         secrets: "GCLOUD_AUTH"
     - uses: actions/checkout@v1
