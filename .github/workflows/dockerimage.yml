@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
-        echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        echo $GCLOUD_AUTH | base64 -D > ${HOME}/gcloud-service-key.json
         wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
         tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
         google-cloud-sdk/bin/gcloud --quiet components update
