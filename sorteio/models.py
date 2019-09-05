@@ -26,3 +26,6 @@ class Sorteio(BaseModel):
     vencedor_unico = models.BooleanField(default=False)
     vencedor = models.ForeignKey(Pessoa, null=True, blank=True, on_delete=models.PROTECT, related_name='sorteios_vencidos')
     aberto = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return f'/sorteio/{self.pk}'

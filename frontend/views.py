@@ -14,6 +14,10 @@ class CadastroSucesso(DetailView):
 class Index(TemplateView):
     template_name = 'lista_sorteios.html'
 
+class Sorteio(DetailView):
+    model = Sorteio
+    template_name = 'sorteio.html'
+
 def participar_sorteio(request, user_id, sorteio_id):
     try:
         sorteio = Sorteio.objects.get(pk=sorteio_id)
