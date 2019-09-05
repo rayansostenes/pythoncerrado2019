@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:        
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/gcloud/auth@master
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag gcr.io/campusparty2019/djangoapp
+        gcloud auth configure-docker
+        docker push gcr.io/campusparty2019/djangoapp
