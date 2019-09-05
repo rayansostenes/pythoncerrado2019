@@ -8,13 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Run a custom command
-      uses: actions/gcloud/auth@master
-      with:
-        secrets: "GCLOUD_AUTH"
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
+        echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+        wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
+        tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
+        google-cloud-sdk/bin/gcloud --quiet components update
+        google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+        docker login -u _json_key --password-stdin https://us.gcr.io < ${HOME}/gcloud-service-key.json
         docker build . --file Dockerfile --tag gcr.io/campusparty2019/djangoapp
-        gcloud auth configure-docker
         docker push gcr.io/campusparty2019/djangoapp
