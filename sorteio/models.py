@@ -19,7 +19,7 @@ class Pessoa(BaseModel):
         return f'/user/{self.pk}/'
 
     def __str__(self):
-        return f'{self.name}({self.perfil_instagram})'
+        return f'{self.nome}({self.perfil_instagram})'
 
 class Sorteio(BaseModel):
     premio = models.CharField(max_length=1024)
