@@ -4,39 +4,42 @@
 {% load crispy_forms_tags %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'register.css' %}" />
 {% endblock extra_head %} 
 
 {% block body_init %}
-<div class="video_overlay" style="display: none">
-    <video muted playsinline id="qr-video"></video>
-</div>
 {% endblock body_init %}
 
-{% block page_title %}{% endblock page_title %}
+{% block page_title %}Inscritos{% endblock page_title %}
 
 {% block content %}
-<button id='participar' class="btn btn-block btn-primary btn-lg">Participar de um Sorteio</button>
-<script type="module">
-    const userID = localStorage.getItem('$userID')
-    if(!userID) {
-        window.location.href = '/register/';
-    }
-
-    import QrScanner from "{% static 'qr-scanner.min.js' %}";
-    QrScanner.WORKER_PATH = "{% static 'qr-scanner-worker.min.js' %}";
-    const video = document.getElementById("qr-video");
-    const overlay = document.querySelector(".video_overlay");
-    const nome_field = document.querySelector('#id_nome');
-
-    function initScanner(){
-        overlay.style.display = 'flex';
-        const scanner = new QrScanner(video, result => {
-            window.location.href = `/participar/${userID}/${result}`;
-        });
-        scanner.start();
-    }
-    const button = document.querySelector('#participar');
-    button.addEventListener('click', initScanner);
-</script>
+<div>
+    <button class="btn btn-primary btn-lg" onclick="sortear();">Sortear</button>
+</div>
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for pessoa in object_list %}
+                      <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ pessoa.nome }}</td>
+                        <td>{{ pessoa.email }}</td>
+                      </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <script>
+        function sortear(){
+            const trs = Array.from(document.querySelectorAll('tbody tr'))
+            const index = Math.floor(Math.random() * trs.length);
+            console.log(index);
+            trs[index].style.backgroundColor = 'yellow'
+        }
+      
+      </script>
 {% endblock content %}

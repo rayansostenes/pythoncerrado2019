@@ -4,8 +4,13 @@ from sorteio.models import Pessoa, Sorteio
 
 class CreatePessoaView(CreateView):
     model = Pessoa
-    fields = ['qr_code', 'nome', 'perfil_instagram', 'telefone']
+    fields = ['nome', 'email', 'telefone']
     template_name = 'cadastrar_usuario.html'
+
+class ListPessoas(ListView):
+    model = Pessoa
+    queryset = Pessoa.objects.filter(old=False)
+    template_name = 'lista_sorteios.html'
 
 class CadastroSucesso(DetailView):
     model = Pessoa
@@ -17,6 +22,9 @@ class Index(TemplateView):
 class Sorteio(DetailView):
     model = Sorteio
     template_name = 'sorteio.html'
+
+def participar_sorteio_pre(request, sorteio_id):
+    return render(request, 'participar.html')
 
 def participar_sorteio(request, user_id, sorteio_id):
     try:

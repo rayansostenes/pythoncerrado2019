@@ -23,26 +23,26 @@
 </form>
 
 <script type="module">
-    import QrScanner from "{% static 'qr-scanner.min.js' %}";
-    QrScanner.WORKER_PATH = "{% static 'qr-scanner-worker.min.js' %}";
-    const video = document.getElementById("qr-video");
-    const overlay = document.querySelector(".video_overlay");
-    const nome_field = document.querySelector('#id_nome');
+    // import QrScanner from "{% static 'qr-scanner.min.js' %}";
+    // QrScanner.WORKER_PATH = "{% static 'qr-scanner-worker.min.js' %}";
+    // const video = document.getElementById("qr-video");
+    // const overlay = document.querySelector(".video_overlay");
+    // const nome_field = document.querySelector('#id_nome');
 
-    function initScanner(){
-        overlay.style.display = 'flex';
-        const scanner = new QrScanner(video, result => {
-            scanner.destroy();
-            overlay.style.display = "none";
-            qr_code_field.value = result;
-            nome_field.focus();
-            console.log(result);
-        });
-        scanner.start();
-    }
-    // initScanner();
-    const qr_code_field = document.querySelector('#id_qr_code');
-    qr_code_field.addEventListener('focus', initScanner);
+    // function initScanner(){
+    //     overlay.style.display = 'flex';
+    //     const scanner = new QrScanner(video, result => {
+    //         scanner.destroy();
+    //         overlay.style.display = "none";
+    //         qr_code_field.value = result;
+    //         nome_field.focus();
+    //         console.log(result);
+    //     });
+    //     scanner.start();
+    // }
+    // // initScanner();
+    // const qr_code_field = document.querySelector('#id_qr_code');
+    // qr_code_field.addEventListener('focus', initScanner);
 
 </script>
 {% endblock content %}

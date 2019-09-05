@@ -10,10 +10,10 @@ class BaseModel(models.Model):
         abstract = True
 
 class Pessoa(BaseModel):
-    qr_code = models.CharField(max_length=255, unique=True)
     nome = models.CharField(max_length=255)
-    perfil_instagram = models.CharField(max_length=255, blank=True, null=True)
+    email = models.CharField(max_length=255, blank=True, null=True)
     telefone = models.CharField(max_length=255, blank=True, null=True)
+    old = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return f'/user/{self.pk}/'

@@ -8,4 +8,4 @@ class SorteioAdmin(admin.ModelAdmin):
 
 @admin.register(Pessoa)
 class PessoaAdmin(admin.ModelAdmin):
-    list_display = ['qr_code', 'nome', 'perfil_instagram', 'telefone']
+    list_display = ['nome', 'email', 'telefone']

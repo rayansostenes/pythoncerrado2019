@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from frontend.views import CreatePessoaView, CadastroSucesso, Index, participar_sorteio, Sorteio
+from frontend.views import CreatePessoaView, CadastroSucesso, ListPessoas, Index, participar_sorteio, Sorteio, participar_sorteio_pre
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', CreatePessoaView.as_view()),
+    path('', CreatePessoaView.as_view()),
     path('user/<pk>/', CadastroSucesso.as_view()),
-    path('participar/<user_id>/<sorteio_id>', participar_sorteio),
-    path('sorteio/<pk>/', Sorteio.as_view()),
-    path('', Index.as_view()),
+    path('sorteio/', ListPessoas.as_view()),
+    # path('participar/<sorteio_id>/', participar_sorteio_pre),
+    # path('participar/<sorteio_id>/<user_id>/', participar_sorteio),
+    # path('sorteio/<pk>/', Sorteio.as_view()),
+    # path('', Index.as_view()),
 ]
