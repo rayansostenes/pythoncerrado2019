@@ -4,9 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 django = "*"
+dj-database-url = "*"
+django-extensions = "*"
+uwsgi = "*"
+psycopg2-binary = "*"
+python-decouple = "*"
+django-storages = {extras = ["google"],version = "*"}
 
 [requires]
 python_version = "3.7"
