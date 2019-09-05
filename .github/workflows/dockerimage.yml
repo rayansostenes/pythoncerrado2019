@@ -20,4 +20,4 @@ jobs:
         google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gcloud-service-key.json
         docker login -u _json_key --password-stdin https://us.gcr.io < gcloud-service-key.json
         docker build . --file Dockerfile --tag gcr.io/campusparty2019/djangoapp
-        docker push gcr.io/campusparty2019/djangoapp
+        gcloud docker -- push gcr.io/campusparty2019/djangoapp
