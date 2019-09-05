@@ -18,6 +18,9 @@ class Pessoa(BaseModel):
     def get_absolute_url(self):
         return f'/user/{self.pk}/'
 
+    def __str__(self):
+        return f'{self.name}({self.perfil_instagram})'
+
 class Sorteio(BaseModel):
     premio = models.CharField(max_length=1024)
     post_instagram = models.CharField(max_length=1024, blank=True)
@@ -29,3 +32,6 @@ class Sorteio(BaseModel):
 
     def get_absolute_url(self):
         return f'/sorteio/{self.pk}'
+
+    def __str__(self):
+        return f'{self.premio}'
